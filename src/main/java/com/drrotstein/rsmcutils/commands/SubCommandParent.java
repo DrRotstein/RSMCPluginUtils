@@ -57,7 +57,7 @@ public abstract class SubCommandParent implements CommandExecutor, TabCompleter 
 	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
 		this.sender = arg0;
 		this.args = arg3;
-		if(hasSubCommands()) return handleSubCommandsExecution(arg0, arg1, arg2, arg3);
+		if(hasSubCommands() && args.length > 0) return handleSubCommandsExecution(arg0, arg1, arg2, arg3);
 		return command(arg0, arg1, arg2, arg3);
 	}
 	
@@ -80,7 +80,6 @@ public abstract class SubCommandParent implements CommandExecutor, TabCompleter 
 		if(args.length <= 0) {
 			incorrectUsage();
 			return false;
-			
 		}
 		for(SubCommand sub : getSubCommands()) if(args[0].equals(sub.getLabel())) {
 			if(!sub.getPermission().equals("") && !sender.hasPermission(sub.getPermission())) {
