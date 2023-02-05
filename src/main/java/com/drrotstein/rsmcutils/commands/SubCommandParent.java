@@ -73,11 +73,9 @@ public abstract class SubCommandParent implements CommandExecutor, TabCompleter 
 		this.args = arg3;
 		List<String> raw = new ArrayList<>();
 		if(hasSubCommands()) raw.addAll(handleSubCommandsTabCompletion(arg0, arg1, arg2, arg3));
-		if(arg3.length == 1) {
-			List<String> opt = tabComplete(arg0, arg1, arg2, arg3);
-			if(opt != null) raw.addAll(opt);
-			if(hasHelpMessage()) raw.add("help");
-		}
+		List<String> tc = tabComplete(arg0, arg1, arg2, arg3);
+		if(tc != null) raw.addAll(tc);
+		if(arg3.length == 1) if(hasHelpMessage()) raw.add("help");
 		List<String> opt = new ArrayList<>();
 		for(String s : raw) if(s.startsWith(arg3[arg3.length - 1])) opt.add(s);
 		return opt;
