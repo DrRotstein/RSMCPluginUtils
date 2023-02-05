@@ -131,10 +131,10 @@ public class LocationUtils {
 				String[] copy = parts.clone();
 				parts = new String[4];
 				for(int i = 0; i < 3; i++) parts[i + 1] = copy[i];
-				if(copy[0].equals("~") || copy[0].equals("^")) parts[1] = pl.getX() + "";
+				if(parts[1].equals("~") || parts[1].equals("^")) parts[1] = pl.getX() + "";
 				parts[0] = pl.getWorld().getName();
-				if(copy[1].equals("~") || copy[1].equals("^")) parts[2] = pl.getY() + "";
-				if(copy[2].equals("~") || copy[2].equals("^")) parts[3] = pl.getZ() + "";
+				if(parts[2].equals("~") || parts[2].equals("^")) parts[2] = pl.getY() + "";
+				if(parts[3].equals("~") || parts[3].equals("^")) parts[3] = pl.getZ() + "";
 				break;
 				
 			case 6:
@@ -161,6 +161,15 @@ public class LocationUtils {
 		} catch(NumberFormatException e) {
 			return null;
 		}
+	}
+	
+	/**
+	 * Returns the location input with x, y, z set to their block positions (basically casts all x, y, z to integers).
+	 * @param in The location
+	 * @return The location input with x, y, z set to their block positions (basically casts all x, y, z to integers).
+	 */
+	public static Location toBlockPos(Location in) {
+		return new Location(in.getWorld(), in.getBlockX(), in.getBlockY(), in.getZ());
 	}
 	
 }
