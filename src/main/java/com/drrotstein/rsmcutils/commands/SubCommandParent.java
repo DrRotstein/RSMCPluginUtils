@@ -14,6 +14,7 @@ public abstract class SubCommandParent implements CommandExecutor, TabCompleter 
 	public abstract boolean command(CommandSender sender, Command command, String label, String[] args);
 	public abstract List<String> tabComplete(CommandSender sender, Command command, String label, String[] args);
 	public abstract SubCommandList getSubCommands();
+	public abstract String getHelpMessage();
 	
 	public CommandSender sender;
 	public String[] args;
@@ -57,6 +58,7 @@ public abstract class SubCommandParent implements CommandExecutor, TabCompleter 
 	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
 		this.sender = arg0;
 		this.args = arg3;
+		if(args.length == 1 && args[0].equals("help") && getHelpMessage() != null) arg0.sendMessage(getHelpMessage());
 		if(hasSubCommands() && args.length > 0) return handleSubCommandsExecution(arg0, arg1, arg2, arg3);
 		return command(arg0, arg1, arg2, arg3);
 	}
@@ -70,6 +72,7 @@ public abstract class SubCommandParent implements CommandExecutor, TabCompleter 
 		if(arg3.length == 1) {
 			List<String> opt = tabComplete(arg0, arg1, arg2, arg3);
 			if(opt != null) raw.addAll(opt);
+			if(getHelpMessage() != null) raw.add("help");
 		}
 		List<String> opt = new ArrayList<>();
 		for(String s : raw) if(s.startsWith(arg3[arg3.length - 1])) opt.add(s);
