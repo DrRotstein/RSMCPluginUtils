@@ -60,7 +60,7 @@ public abstract class SubCommandParent implements CommandExecutor, TabCompleter 
 		this.args = arg3;
 		if(args.length == 1 && args[0].equals("help") && hasHelpMessage()) {
 			arg0.sendMessage("§bHere is a help message for §3§l/" + arg2 + "§b:");
-			for(String help : getHelpMessage()) arg0.sendMessage("§7- §e");
+			for(String help : getHelpMessage()) arg0.sendMessage("§7- §e" + help);
 			return true;
 		}
 		if(hasSubCommands() && args.length > 0) return handleSubCommandsExecution(arg0, arg1, arg2, arg3);
