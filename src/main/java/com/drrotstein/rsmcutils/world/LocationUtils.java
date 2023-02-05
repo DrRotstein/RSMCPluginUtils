@@ -21,7 +21,7 @@ public class LocationUtils {
 	public static List<String> lookingAtTabCompletion(Player player, String[] args) {
 		List<String> opt = new ArrayList<>();
 		//Tabcomplete existing worlds
-		if(args.length == 2) for(World world : Bukkit.getWorlds()) opt.add(world.getName());
+		if(args.length == 1) for(World world : Bukkit.getWorlds()) opt.add(world.getName());
 		if(player != null) {
 			//Get the location the player is looking at and get xyz into strings
 			Location lookingAt = player != null ? player.getTargetBlock((Set<Material>) null, 10).getLocation() : null;
@@ -31,7 +31,7 @@ public class LocationUtils {
 				x = y = z = "~";
 			}
 			//Get the args-index of where the coordinates start
-			int coordsStartIndex = args.length >= 2 && Bukkit.getWorld(args[1]) != null ? 2 : 1;
+			int coordsStartIndex = args.length >= 1 && Bukkit.getWorld(args[0]) != null ? 1 : 0;
 			//Tabcomplete coordinates of the location the player is looking at
 			if(args.length == coordsStartIndex + 1 || args.length == coordsStartIndex + 4) {
 				opt.add(x);
