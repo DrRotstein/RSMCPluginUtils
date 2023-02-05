@@ -20,7 +20,7 @@ public abstract class SubCommandParent implements CommandExecutor, TabCompleter 
 	
 	public boolean checkForPlayer() {
 		if(!(sender instanceof Player)) {
-			sender.sendMessage("§cYou have to be a player to perform that command!");
+			sender.sendMessage("Â§cYou have to be a player to perform that command!");
 			return false;
 		}
 		return true;
@@ -35,7 +35,7 @@ public abstract class SubCommandParent implements CommandExecutor, TabCompleter 
 	
 	public boolean checkForArgsLengthGreaterThan(int length) {
 		if(args.length > length) {
-			sender.sendMessage("§cYou entered too many arguments!");
+			sender.sendMessage("Â§cYou entered too many arguments!");
 			return false;
 		}
 		return true;
@@ -43,14 +43,14 @@ public abstract class SubCommandParent implements CommandExecutor, TabCompleter 
 	
 	public boolean checkForArgsLengthLessThan(int length) {
 		if(args.length < length) {
-			sender.sendMessage("§cYou need to enter more arguments!");
+			sender.sendMessage("Â§cYou need to enter more arguments!");
 			return false;
 		}
 		return true;
 	}
 	
 	public void incorrectUsage() {
-		sender.sendMessage("§cIncorrect usage!");
+		sender.sendMessage("Â§cIncorrect usage!");
 	}
 	
 	@Override
@@ -83,7 +83,7 @@ public abstract class SubCommandParent implements CommandExecutor, TabCompleter 
 		}
 		for(SubCommand sub : getSubCommands()) if(args[0].equals(sub.getLabel())) {
 			if(!sub.getPermission().equals("") && !sender.hasPermission(sub.getPermission())) {
-				sender.sendMessage("§cYou do not have permission to perform this command!");
+				sender.sendMessage("Â§cYou do not have permission to perform this command!");
 				return false;
 			}
 			String[] newArgs = new String[args.length - 1];
