@@ -52,22 +52,22 @@ public class LocationUtils {
 	/**
 	 * Convert a location into readable text.
 	 * @param loc The location
-	 * @param seperator The seperator to be used, e.g 1,1,1 or "1 1 1"
+	 * @param separator The seperator to be used, e.g 1,1,1 or "1 1 1"
 	 * @return The {@link loc} in form of a readable text
 	 */
-	public static String display(Location loc, String seperator) {
-		return display(loc, seperator, false);
+	public static String display(Location loc, String separator) {
+		return display(loc, separator, false);
 	}
 	
 	/**
 	 * Convert a location into readable text.
 	 * @param loc The location
-	 * @param seperator The seperator to be used, e.g 1,1,1 or "1 1 1"
+	 * @param separator The seperator to be used, e.g 1,1,1 or "1 1 1"
 	 * @param showYawPitch Whether or not the yaw and pitch values should be added to the result or not
 	 * @return The {@link loc} in form of a readable text
 	 */
-	public static String display(Location loc, String seperator, boolean showYawPitch) {
-		return loc.getWorld().getName() + seperator + ifDecimal(loc.getX()) + seperator + ifDecimal(loc.getY()) + seperator + ifDecimal(loc.getZ()) + (showYawPitch ? seperator + ifDecimal(loc.getYaw()) + seperator + ifDecimal(loc.getPitch()) : "");
+	public static String display(Location loc, String separator, boolean showYawPitch) {
+		return loc.getWorld().getName() + separator + ifDecimal(loc.getX()) + separator + ifDecimal(loc.getY()) + separator + ifDecimal(loc.getZ()) + (showYawPitch ? separator + ifDecimal(loc.getYaw()) + separator + ifDecimal(loc.getPitch()) : "");
 	}
 	
 	/**
@@ -91,12 +91,12 @@ public class LocationUtils {
 	/**
 	 * Decodes a location from string, e.g. world,123,53,531
 	 * @param location
-	 * @param seperator
+	 * @param separator
 	 * @return The from string decoded location.
 	 */
-	public static Location undisplay(String location, String seperator) {
+	public static Location undisplay(String location, String separator) {
 		try {
-			String[] parts = location.split(seperator);
+			String[] parts = location.split(separator);
 			if(Bukkit.getWorld(parts[0]) == null) return null;
 			Double[] doubleParts = new Double[4];
 			for(int i = 1; i < 4; i++) doubleParts[i] = Double.parseDouble(parts[i] + "D");
@@ -118,13 +118,13 @@ public class LocationUtils {
 	 * e.g. "world ~ ~ ~"
 	 * @param player
 	 * @param location
-	 * @param seperator
+	 * @param separator
 	 * @return The from string decoded location.
 	 */
-	public static Location undisplay(Player player, String location, String seperator) {
+	public static Location undisplay(Player player, String location, String separator) {
 		try {
 			Location pl = player.getLocation();
-			String[] parts = location.split(seperator);
+			String[] parts = location.split(separator);
 			
 			switch(parts.length) {
 			case 3:
