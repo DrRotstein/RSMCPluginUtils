@@ -130,6 +130,7 @@ public class LocationUtils {
 			case 3:
 				String[] copy = parts.clone();
 				parts = new String[4];
+				for(int i = 0; i < 3; i++) parts[i + 1] = copy[i];
 				if(copy[0].equals("~") || copy[0].equals("^")) parts[1] = pl.getX() + "";
 				parts[0] = pl.getWorld().getName();
 				if(copy[1].equals("~") || copy[1].equals("^")) parts[2] = pl.getY() + "";
