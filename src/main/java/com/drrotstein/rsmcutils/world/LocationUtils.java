@@ -169,7 +169,7 @@ public class LocationUtils {
 	 * @return The location input with x, y, z set to their block positions (basically casts all x, y, z to integers).
 	 */
 	public static Location toBlockPos(Location in) {
-		return new Location(in.getWorld(), in.getBlockX(), in.getBlockY(), in.getZ());
+		return new Location(in.getWorld(), in.getBlockX(), in.getBlockY(), in.getBlockZ());
 	}
 	
 }
