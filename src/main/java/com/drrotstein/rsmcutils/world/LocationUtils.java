@@ -56,7 +56,18 @@ public class LocationUtils {
 	 * @return The {@link loc} in form of a readable text
 	 */
 	public static String display(Location loc, String seperator) {
-		return loc.getWorld().getName() + seperator + ifDecimal(loc.getX()) + seperator + ifDecimal(loc.getY()) + seperator + ifDecimal(loc.getZ()) + seperator + ifDecimal(loc.getYaw()) + seperator + ifDecimal(loc.getPitch());
+		return display(loc, seperator, false);
+	}
+	
+	/**
+	 * Convert a location into readable text.
+	 * @param loc The location
+	 * @param seperator The seperator to be used, e.g 1,1,1 or "1 1 1"
+	 * @param showYawPitch Whether or not the yaw and pitch values should be added to the result or not
+	 * @return The {@link loc} in form of a readable text
+	 */
+	public static String display(Location loc, String seperator, boolean showYawPitch) {
+		return loc.getWorld().getName() + seperator + ifDecimal(loc.getX()) + seperator + ifDecimal(loc.getY()) + seperator + ifDecimal(loc.getZ()) + (showYawPitch ? seperator + ifDecimal(loc.getYaw()) + seperator + ifDecimal(loc.getPitch()) : "");
 	}
 	
 	/**
