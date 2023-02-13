@@ -48,6 +48,34 @@ public enum ServerVersion {
 	V1_19_3;
 	
 	
+	public boolean newerThan(ServerVersion compare) {
+		int[] v = versions();
+		int[] vComp = compare.versions();
+		return v[0] > vComp[0] || (v[0] == vComp[0] && v[1] > vComp[1]) || (v[0] == vComp[0] && v[1] == vComp[1] && v[2] > vComp[2]);
+	}
+	
+	public boolean olderThan(ServerVersion compare) {
+		return this != compare && !newerThan(compare);
+	}
+	
+	public boolean newerEquals(ServerVersion compare) {
+		return this == compare || newerThan(compare);
+	}
+	
+	public boolean olderEquals(ServerVersion compare) {
+		return !newerThan(compare);
+	}
+	
+	public String toVersionString() {
+		int[] versions = versions();
+		return versions[0] + "." + versions[1] + "." + versions[2];
+	}
+	
+	public int[] versions() {
+		String[] v = name().split("_");
+		return new int[] {Integer.parseInt(v[0].substring(1)), Integer.parseInt(v[1]), Integer.parseInt(v[2])};
+	}
+	
 	
 	public static ServerVersion fromString(String string) {
 		String[] v = string.split("\\.");
